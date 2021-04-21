@@ -1,10 +1,15 @@
 #!/usr/bin/python3
-
+"""
+class LFUCache that inherits from BaseCaching and is a caching system
+"""
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LFUCache(BaseCaching):
+    """
+    class LFUCache that inherits from BaseCaching and is a caching system
+    """
     QUEUE = []
     usage = {}
 
