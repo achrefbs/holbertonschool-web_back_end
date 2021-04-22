@@ -6,7 +6,7 @@ as header (<h1>).
 """
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
 
@@ -22,10 +22,21 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
+@babel.localeselector
+def get_locale():
+    """
+    determine the best match with our supported languages.
+    """
+    lg = request.args.get('locale')
+    if lg is not None:
+        return lg
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
 @app.route('/')
 def index():
     """index"""
-    return render_template('1-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == '__main__':
