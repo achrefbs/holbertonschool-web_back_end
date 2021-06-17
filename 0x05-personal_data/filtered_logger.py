@@ -71,3 +71,34 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
                                    password=password,
                                    host=host,
                                    database=database)
+
+
+def main():
+    """
+    obtain a database connection using get_db and retrieve all rows.
+    """
+
+    connecter = get_db()
+    cursor = connecter.cursor()
+    table = "users"
+    q = ("SELECT * FROM %s")
+    cursor.execute(q, table)
+
+    logger = get_logger()
+
+    data = []
+    for row in cursor:
+        inf = f"name={row[0]}; email={row[1]}; phone={row[2]}; " \
+              f"ssn={row[3]}; password={row[4]}; ip={row[5]}; " \
+              f"last_login={row[6]}; user_agent={row[7]};"
+        data.append(inf)
+
+    for i in data:
+        logger.info(data)
+
+    cursor.close()
+    connecter.close()
+
+
+if __name__ == "__main__":
+    main()
