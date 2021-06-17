@@ -33,3 +33,12 @@ def unauthorized() -> str:
     """
     abort(401)
     return jsonify({})
+
+
+@app_views.route('/forbidden/', strict_slashes=False)
+def forbidden() -> str:
+    """
+    calling abort(403)
+    """
+    abort(401)
+    return jsonify({})
