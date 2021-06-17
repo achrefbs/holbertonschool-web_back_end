@@ -40,5 +40,5 @@ def forbidden() -> str:
     """
     calling abort(403)
     """
-    abort(401)
+    abort(403)
     return jsonify({})
