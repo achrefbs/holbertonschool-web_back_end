@@ -7,3 +7,4 @@ app.get('/', (request, response) => {
 });
 
 app.listen(1245);
+module.exports = app;
